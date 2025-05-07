@@ -1,3 +1,7 @@
+<?php
+require_once 'includes/auth.php';
+requireLogin();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +25,13 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Home</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a href="logout.php" class="nav-link">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
       </li>
     </ul>
   </nav>
