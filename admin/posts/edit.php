@@ -1,0 +1,52 @@
+<?php
+include '../../config/connection.php';
+$id = $_GET['id'];
+$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$id");
+$post = mysqli_fetch_assoc($result);
+$notif = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $content = mysqli_real_escape_string($conn, $_POST['content']);
+    if (mysqli_query($conn, "UPDATE posts SET title='$title', content='$content' WHERE id=$id")) {
+        header('Location: index.php?msg=edit');
+        exit;
+    } else {
+        $notif = '<div class="alert alert-danger">Gagal mengupdate post!</div>';
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0">Edit Post</h4>
+                </div>
+                <div class="card-body">
+                    <?= $notif ?>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Judul:</label>
+                            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($post['title']) ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Konten:</label>
+                            <textarea name="content" class="form-control" required><?= htmlspecialchars($post['content']) ?></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a href="index.php" class="btn btn-secondary">Kembali</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

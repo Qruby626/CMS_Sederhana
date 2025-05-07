@@ -1,12 +1,6 @@
 <?php
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "cms_sederhana";
-
-$koneksi = mysqli_connect($host, $username, $password, $database);
-
-if (!$koneksi) {
-    die("Koneksi gagal: " . mysqli_connect_error());
-}
-?>
+   $conn = mysqli_connect("localhost", "root", "", "cms_sederhana");
+   if (!$conn) {
+       die("Koneksi gagal: " . mysqli_connect_error());
+   }
+   ?>
