@@ -8,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $slug = strtolower(str_replace(' ', '-', $name));
     $description = mysqli_real_escape_string($conn, $_POST['description']);
     
-    $query = "INSERT INTO categories (name, slug, description) VALUES ('$name', '$slug', '$description')";
-    
-    if (mysqli_query($conn, $query)) {
-        header("Location: index.php");
-        exit();
+    // Cek apakah slug sudah ada
+    $cek = mysqli_query($conn, "SELECT * FROM categories WHERE slug='$slug'");
+    if (mysqli_num_rows($cek) > 0) {
+        echo "Slug sudah digunakan, silakan gunakan slug lain.";
     } else {
-        $error = "Error: " . mysqli_error($conn);
+        mysqli_query($conn, "INSERT INTO categories (name, slug, description) VALUES ('$name', '$slug', '$description')");
+        echo "Kategori berhasil ditambahkan.";
     }
 }
 ?>
