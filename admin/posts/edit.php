@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: index.php?msg=edit');
         exit;
     } else {
-        $notif = '<div class="alert alert-danger">Gagal mengupdate post!</div>';
+        $notif = "<script>toastr.error('Gagal mengupdate post!');</script>";
     }
 }
 ?>
@@ -22,13 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Edit Post</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
 <body class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-header bg-warning">
-                    <h4 class="mb-0">Edit Post</h4>
+                    <h4 class="mb-0"><i class="fas fa-edit"></i> Edit Post</h4>
                 </div>
                 <div class="card-body">
                     <?= $notif ?>
@@ -39,14 +42,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Konten:</label>
-                            <textarea name="content" class="form-control" required><?= htmlspecialchars($post['content']) ?></textarea>
+                            <textarea id="summernote" name="content" class="form-control" required><?= htmlspecialchars($post['content']) ?></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Update</button>
                         <a href="index.php" class="btn btn-secondary">Kembali</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#summernote').summernote({ height: 200 });
+});
+</script>
 </body>
 </html>

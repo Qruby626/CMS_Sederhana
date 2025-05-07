@@ -1,6 +1,9 @@
 <?php
 require_once 'includes/auth.php';
 requireLogin();
+
+include 'config/connection.php';
+$result = mysqli_query($conn, "SELECT * FROM posts ORDER BY created_at DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +69,26 @@ requireLogin();
     </div>
     <div class="content">
       <div class="container-fluid">
-        <p>Ini adalah tampilan awal CMS menggunakan AdminLTE.</p>
+        <h1 class="mb-4 text-center">Daftar Post</h1>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <?php while($row = mysqli_fetch_assoc($result)): ?>
+              <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                  <?php if($row['image']): ?>
+                      <img src="uploads/<?= $row['image'] ?>" class="img-thumbnail mb-2" width="120">
+                  <?php endif; ?>
+                  <h3 class="card-title"><?= htmlspecialchars($row['title']) ?></h3>
+                  <p class="card-text"><?= nl2br(htmlspecialchars($row['content'])) ?></p>
+                  <div class="text-muted small">Diposting pada <?= date('d M Y H:i', strtotime($row['created_at'])) ?></div>
+                </div>
+              </div>
+            <?php endwhile; ?>
+            <?php if(mysqli_num_rows($result) == 0): ?>
+              <div class="alert alert-info text-center">Belum ada post.</div>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
     </div>
   </div>
