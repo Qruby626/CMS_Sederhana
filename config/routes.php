@@ -4,6 +4,7 @@ require_once __DIR__ . '/../app/controllers/CategoryController.php';
 require_once __DIR__ . '/../app/controllers/PostController.php';
 require_once __DIR__ . '/../app/controllers/AuthController.php';
 require_once __DIR__ . '/../app/controllers/DashboardController.php';
+require_once __DIR__ . '/../app/controllers/AdminController.php';
 
 $router = new Router();
 
@@ -16,6 +17,9 @@ $router->add('GET', '/CMS_Sederhana/auth/logout', 'AuthController', 'logout');
 
 // Dashboard route
 $router->add('GET', '/CMS_Sederhana/dashboard', 'DashboardController', 'index');
+
+// Admin route
+$router->add('GET', '/CMS_Sederhana/admin', 'AdminController', 'index');
 
 // Category routes
 $router->add('GET', '/CMS_Sederhana/categories', 'CategoryController', 'index');

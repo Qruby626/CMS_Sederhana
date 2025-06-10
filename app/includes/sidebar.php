@@ -16,7 +16,7 @@
                     Categories
                 </a>
             </li>
-            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'admin'): ?>
+            <?php if (isset($_SESSION['user_id']) && isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'): ?>
             <li class="nav-item">
                 <a class="nav-link" href="/CMS_Sederhana/users">
                     Users

@@ -42,7 +42,7 @@
 </div>
 
 <!-- Include TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/u60478lepegkoo9owep0zc1sb2xxg36run6fuk2sqenw7zqq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
         selector: '#content',
