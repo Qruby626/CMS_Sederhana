@@ -15,19 +15,37 @@ class Router {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 
-        // Debug information
-        error_log("Dispatching URI: " . $uri);
-        error_log("Request Method: " . $method);
-        error_log("Available Routes: " . print_r($this->routes, true));
+        // Determine the base path (e.g., /CMS_Sederhana/public)
+        // This is crucial for environments where the app is in a subfolder.
+        $scriptName = $_SERVER['SCRIPT_NAME']; // e.g., /CMS_Sederhana/public/index.php
+        $basePath = dirname($scriptName); // e.g., /CMS_Sederhana/public
 
-        // Remove base path from URI if needed
-        $basePath = '/CMS_Sederhana/public';
+        // Ensure base path ends without a slash if it's not the root
+        if ($basePath !== '/' && substr($basePath, -1) === '/') {
+            $basePath = substr($basePath, 0, -1);
+        }
+
+        // Remove the base path from the URI
         if (strpos($uri, $basePath) === 0) {
             $uri = substr($uri, strlen($basePath));
         }
+
+        // If after stripping, URI is empty, it means we are at the base route (e.g., /CMS_Sederhana/public/ or /CMS_Sederhana/)
         if (empty($uri)) {
             $uri = '/';
         }
+
+        // Normalize URI: remove trailing slash unless it's just '/'
+        if (strlen($uri) > 1 && substr($uri, -1) === '/') {
+            $uri = substr($uri, 0, -1);
+        }
+
+        // Debug information
+        error_log("Original URI: " . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+        error_log("Calculated Base Path: " . $basePath);
+        error_log("Cleaned URI for routing: " . $uri);
+        error_log("Request Method: " . $method);
+        error_log("Available Routes: " . print_r($this->routes, true));
 
         foreach ($this->routes as $route) {
             $pattern = $this->convertPathToRegex($route['path']);

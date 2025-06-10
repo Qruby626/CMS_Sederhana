@@ -14,10 +14,10 @@
             <a href="/CMS_Sederhana/posts">Posts</a>
             <a href="/CMS_Sederhana/categories">Categories</a>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="/CMS_Sederhana/logout">Logout</a>
+                <a href="/CMS_Sederhana/auth/logout">Logout</a>
             <?php else: ?>
-                <a href="/CMS_Sederhana/login">Login</a>
-                <a href="/CMS_Sederhana/register">Register</a>
+                <a href="/CMS_Sederhana/auth/login">Login</a>
+                <a href="/CMS_Sederhana/auth/register">Register</a>
             <?php endif; ?>
         </nav>
     </header>

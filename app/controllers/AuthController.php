@@ -11,17 +11,28 @@ class AuthController extends Controller {
 
     public function login() {
         if ($this->auth->isLoggedIn()) {
-            $this->redirect('/');
+            $this->redirect('/CMS_Sederhana/dashboard');
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'] ?? '';
+            $username = trim($_POST['username'] ?? '');
             $password = $_POST['password'] ?? '';
+            $remember = isset($_POST['remember']);
+
+            if (empty($username) || empty($password)) {
+                $_SESSION['error'] = 'Please fill in all fields';
+                $this->redirect('/CMS_Sederhana/auth/login');
+            }
 
             if ($this->auth->login($username, $password)) {
-                $this->redirect('/');
+                if ($remember) {
+                    // Set a cookie that expires in 30 days
+                    setcookie('remember_user', $username, time() + (86400 * 30), '/');
+                }
+                $this->redirect('/CMS_Sederhana/dashboard');
             } else {
                 $_SESSION['error'] = 'Invalid username or password';
+                $this->redirect('/CMS_Sederhana/auth/login');
             }
         }
 
