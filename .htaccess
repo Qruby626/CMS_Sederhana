@@ -1,0 +1,28 @@
+RewriteEngine On
+
+# Set the base path
+RewriteBase /CMS_Sederhana/
+
+# Redirect to public folder
+RewriteCond %{REQUEST_URI} !^/CMS_Sederhana/public/
+RewriteRule ^(.*)$ public/$1 [L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to specific file types
+<FilesMatch "\.(env|config.js|md|gitignore|gitattributes|lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to specific directories
+RedirectMatch 403 ^/CMS_Sederhana/app/?$
+RedirectMatch 403 ^/CMS_Sederhana/core/?$
+RedirectMatch 403 ^/CMS_Sederhana/config/?$ 

@@ -1,0 +1,214 @@
+/* Define Orange Color Palette */
+:root {
+    --primary-orange: #FF8C00; /* DarkOrange */
+    --dark-orange: #CC7000;   /* Slightly darker orange */
+    --light-orange: #FFA500;  /* Orange */
+    --text-dark: #333;
+    --text-light: #fff;
+    --bg-light: #f8f9fa;
+    --bg-dark: #343a40;
+}
+
+/* General body and typography */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header and Navigation (Top Navbar) */
+header {
+    background-color: var(--primary-orange);
+    color: var(--text-light);
+    padding: 0.8rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 20px;
+}
+
+header nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: var(--dark-orange);
+}
+
+/* Main Content Layout */
+main {
+    padding: 20px;
+    min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-orange);
+    color: var(--text-light);
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Custom styles for CMS - Sidebar */
+.sidebar {
+    min-height: calc(100vh - 56px); /* Adjust for fixed top navbar */
+    background-color: var(--bg-dark); /* Keep dark for contrast */
+    padding-top: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link {
+    color: var(--text-light);
+    padding: 0.75rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--primary-orange);
+    color: var(--text-light);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--primary-orange);
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-orange) !important;
+    border-color: var(--dark-orange) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-orange) !important;
+    border-color: var(--dark-orange) !important;
+}
+
+.btn-warning {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #212529 !important; /* Ensure text is visible */
+}
+
+.btn-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+/* Table styling */
+.table {
+    margin-top: 1rem;
+    border-collapse: separate; /* To allow border-radius on cells if needed */
+    border-spacing: 0;
+}
+
+.table thead th {
+    background-color: var(--primary-orange);
+    color: var(--text-light);
+    border-bottom: 2px solid var(--dark-orange);
+    padding: 0.75rem;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+.table-actions {
+    white-space: nowrap;
+}
+
+.table-actions .btn {
+    margin-right: 0.25rem;
+}
+
+.alert {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Rich text editor customizations */
+.tox-tinymce {
+    border-radius: 0.25rem !important;
+}
+
+/* Login page styles */
+.login-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-light);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-logo img {
+    max-width: 150px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 56px; /* Height of the top navbar */
+        bottom: 0;
+        left: -250px; /* Hide sidebar off-screen */
+        width: 250px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar.show {
+        left: 0; /* Show sidebar on small screens */
+    }
+
+    main {
+        margin-left: 0; /* No margin on small screens */
+    }
+
+    /* Add a toggle button for sidebar on small screens if not already present in HTML */
+} 
