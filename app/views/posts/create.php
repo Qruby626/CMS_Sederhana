@@ -1,17 +1,3 @@
-<?php
-include '../../config/connection.php';
-$notif = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = mysqli_real_escape_string($conn, $_POST['title']);
-    $content = mysqli_real_escape_string($conn, $_POST['content']);
-    if (mysqli_query($conn, "INSERT INTO posts (title, content) VALUES ('$title', '$content')")) {
-        header('Location: index.php?msg=add');
-        exit;
-    } else {
-        $notif = "<script>toastr.error('Gagal menambah post!');</script>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h4 class="mb-0"><i class="fas fa-plus"></i> Tambah Post</h4>
                 </div>
                 <div class="card-body">
-                    <?= $notif ?>
-                    <form method="post">
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
+                    <?php endif; ?>
+                    <form method="post" enctype="multipart/form-data" action="/posts/create">
                         <div class="mb-3">
                             <label class="form-label">Judul:</label>
                             <input type="text" name="title" class="form-control" required>
@@ -40,8 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label class="form-label">Konten:</label>
                             <textarea id="summernote" name="content" class="form-control" required></textarea>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Gambar:</label>
+                            <input type="file" name="image" class="form-control">
+                        </div>
                         <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan</button>
-                        <a href="index.php" class="btn btn-secondary">Kembali</a>
+                        <a href="/posts" class="btn btn-secondary">Kembali</a>
                     </form>
                 </div>
             </div>
