@@ -40,4 +40,16 @@ class Post extends Model {
         $stmt = $this->db->prepare($query);
         return $stmt->execute([$id]);
     }
+
+    public function searchPosts($searchTerm) {
+        $searchTerm = '%' . $searchTerm . '%';
+        $query = "SELECT p.*, c.name as category_name 
+                 FROM posts p 
+                 LEFT JOIN categories c ON p.category_id = c.id 
+                 WHERE (p.title LIKE ? OR p.content LIKE ?) AND p.deleted_at IS NULL 
+                 ORDER BY p.created_at DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$searchTerm, $searchTerm]);
+        return $stmt->fetchAll();
+    }
 } 

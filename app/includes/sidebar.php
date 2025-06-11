@@ -3,23 +3,28 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/CMS_Sederhana/dashboard">
-                    Dashboard
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/CMS_Sederhana/posts">
-                    Posts
+                    <i class="fas fa-newspaper"></i> Posts
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/CMS_Sederhana/categories">
-                    Categories
+                    <i class="fas fa-tags"></i> Categories
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/CMS_Sederhana/media">
+                    <i class="fas fa-images"></i> Media
                 </a>
             </li>
             <?php if (isset($_SESSION['user_id']) && isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'): ?>
             <li class="nav-item">
                 <a class="nav-link" href="/CMS_Sederhana/users">
-                    Users
+                    <i class="fas fa-users"></i> Users
                 </a>
             </li>
             <?php endif; ?>

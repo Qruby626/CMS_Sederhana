@@ -97,4 +97,39 @@ class PostController extends Controller {
             exit;
         }
     }
+
+    public function search() {
+        $searchTerm = $_GET['q'] ?? '';
+        $posts = [];
+        if (!empty($searchTerm)) {
+            $posts = $this->postModel->searchPosts($searchTerm);
+        }
+        
+        $data = [
+            'posts' => $posts,
+            'searchTerm' => htmlspecialchars($searchTerm)
+        ];
+        require_once __DIR__ . '/../views/posts/search.php';
+    }
+
+    public function view($id) {
+        $post = $this->postModel->getPostById($id);
+        if (!$post) {
+            $_SESSION['message'] = 'Post not found!';
+            $_SESSION['message_type'] = 'danger';
+            header('Location: /CMS_Sederhana/posts');
+            exit;
+        }
+
+        // Get comments for this post
+        require_once __DIR__ . '/../models/Comment.php';
+        $commentModel = new Comment();
+        $comments = $commentModel->getCommentsByPostId($id);
+
+        $data = [
+            'post' => $post,
+            'comments' => $comments
+        ];
+        require_once __DIR__ . '/../views/posts/view.php';
+    }
 } 

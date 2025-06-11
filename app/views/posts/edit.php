@@ -45,15 +45,4 @@
     </div>
 </div>
 
-<!-- Include TinyMCE -->
-<script src="https://cdn.tiny.cloud/1/u60478lepegkoo9owep0zc1sb2xxg36run6fuk2sqenw7zqq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    tinymce.init({
-        selector: '#content',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        relative_urls: false,
-    });
-</script>
-
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?> 
