@@ -14,6 +14,7 @@ define('BASE_PATH', dirname(__DIR__));
 
 // Load configuration
 require_once BASE_PATH . '/config/connection.php';
+require_once BASE_PATH . '/app/controllers/CommentController.php';
 
 // Debug information
 echo "<!-- Debug: Base path is " . BASE_PATH . " -->\n";
