@@ -22,7 +22,8 @@ VALUES ('adminbaru', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/i
 CREATE TABLE IF NOT EXISTS categories (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL DEFAULT NULL
 );
 
 -- Buat tabel posts jika belum ada
@@ -33,5 +34,12 @@ CREATE TABLE IF NOT EXISTS posts (
     category_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at DATETIME NULL DEFAULT NULL,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
-); 
+);
+
+-- Tambahkan kolom deleted_at ke tabel posts
+ALTER TABLE posts ADD COLUMN deleted_at DATETIME NULL DEFAULT NULL;
+
+-- Tambahkan kolom deleted_at ke tabel categories
+ALTER TABLE categories ADD COLUMN deleted_at DATETIME NULL DEFAULT NULL; 

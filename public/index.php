@@ -6,6 +6,9 @@ ini_set('display_errors', 1);
 // Start session
 session_start();
 
+// Set APP_DEBUG for debugging purposes (temporary)
+$_ENV['APP_DEBUG'] = true;
+
 // Define base path
 define('BASE_PATH', dirname(__DIR__));
 

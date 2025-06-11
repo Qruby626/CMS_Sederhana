@@ -7,7 +7,7 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Categories</h1>
-                <a href="/categories/create" class="btn btn-primary">Add New Category</a>
+                <a href="/CMS_Sederhana/categories/create" class="btn btn-primary">Add New Category</a>
             </div>
 
             <?php if (isset($_SESSION['message'])): ?>
@@ -29,14 +29,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $rowNum = 1; ?>
                         <?php foreach ($categories as $category): ?>
                             <tr>
-                                <td><?= htmlspecialchars($category['id']) ?></td>
+                                <td><?= $rowNum++; ?></td>
                                 <td><?= htmlspecialchars($category['name']) ?></td>
                                 <td><?= htmlspecialchars($category['created_at']) ?></td>
                                 <td>
-                                    <a href="/categories/edit/<?= $category['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="/categories/delete/<?= $category['id'] ?>" class="btn btn-sm btn-danger" 
+                                    <a href="/CMS_Sederhana/categories/edit/<?= $category['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="/CMS_Sederhana/categories/delete/<?= $category['id'] ?>" class="btn btn-sm btn-danger" 
                                        onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
                                 </td>
                             </tr>

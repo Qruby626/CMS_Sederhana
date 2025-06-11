@@ -41,7 +41,7 @@ class AuthController extends Controller {
 
     public function register() {
         if ($this->auth->isLoggedIn()) {
-            $this->redirect('/');
+            $this->redirect('/CMS_Sederhana/');
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,7 +51,7 @@ class AuthController extends Controller {
 
             if ($this->auth->register($username, $password, $email)) {
                 $_SESSION['success'] = 'Registration successful. Please login.';
-                $this->redirect('/login');
+                $this->redirect('/CMS_Sederhana/auth/login');
             } else {
                 $_SESSION['error'] = 'Registration failed. Username or email might be taken.';
             }
@@ -62,6 +62,6 @@ class AuthController extends Controller {
 
     public function logout() {
         $this->auth->logout();
-        $this->redirect('/login');
+        $this->redirect('/CMS_Sederhana/auth/login');
     }
 } 

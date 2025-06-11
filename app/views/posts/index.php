@@ -7,7 +7,7 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Posts</h1>
-                <a href="/posts/create" class="btn btn-primary">Add New Post</a>
+                <a href="/CMS_Sederhana/posts/create" class="btn btn-primary">Add New Post</a>
             </div>
 
             <?php if (isset($_SESSION['message'])): ?>
@@ -37,8 +37,8 @@
                                 <td><?= htmlspecialchars($post['category_name'] ?? 'Uncategorized') ?></td>
                                 <td><?= htmlspecialchars($post['created_at']) ?></td>
                                 <td>
-                                    <a href="/posts/edit/<?= $post['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="/posts/delete/<?= $post['id'] ?>" class="btn btn-sm btn-danger" 
+                                    <a href="/CMS_Sederhana/posts/edit/<?= $post['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="/CMS_Sederhana/posts/delete/<?= $post['id'] ?>" class="btn btn-sm btn-danger" 
                                        onclick="return confirm('Are you sure you want to delete this post?')">Delete</a>
                                 </td>
                             </tr>

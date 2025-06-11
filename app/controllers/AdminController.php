@@ -15,7 +15,7 @@ class AdminController extends Controller {
         
         // Anda bisa menambahkan logika pengecekan role di sini jika diperlukan
         // if (!$this->auth->hasRole('admin')) {
-        //     $this->redirect('/CMS_Sederhana/dashboard'); // Atau halaman error unauthorized
+        //     $this->redirect('/dashboard'); // Atau halaman error unauthorized
         // }
 
         $data = [

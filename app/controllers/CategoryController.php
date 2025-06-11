@@ -18,7 +18,14 @@ class CategoryController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'] ?? '';
             if ($this->categoryModel->createCategory($name)) {
-                header('Location: /categories');
+                $_SESSION['message'] = 'Category created successfully!';
+                $_SESSION['message_type'] = 'success';
+                header('Location: /CMS_Sederhana/categories');
+                exit;
+            } else {
+                $_SESSION['message'] = 'Failed to create category.';
+                $_SESSION['message_type'] = 'danger';
+                header('Location: /CMS_Sederhana/categories/create');
                 exit;
             }
         }
@@ -29,17 +36,40 @@ class CategoryController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'] ?? '';
             if ($this->categoryModel->updateCategory($id, $name)) {
-                header('Location: /categories');
+                $_SESSION['message'] = 'Category updated successfully!';
+                $_SESSION['message_type'] = 'success';
+                header('Location: /CMS_Sederhana/categories');
+                exit;
+            } else {
+                $_SESSION['message'] = 'Failed to update category.';
+                $_SESSION['message_type'] = 'danger';
+                header('Location: /CMS_Sederhana/categories/edit/' . $id);
                 exit;
             }
         }
+        
         $category = $this->categoryModel->getCategoryById($id);
+
+        if (!$category) {
+            $_SESSION['message'] = 'Category not found!';
+            $_SESSION['message_type'] = 'danger';
+            header('Location: /CMS_Sederhana/categories');
+            exit;
+        }
+
         require_once __DIR__ . '/../views/categories/edit.php';
     }
 
     public function delete($id) {
         if ($this->categoryModel->deleteCategory($id)) {
-            header('Location: /categories');
+            $_SESSION['message'] = 'Category deleted successfully!';
+            $_SESSION['message_type'] = 'success';
+            header('Location: /CMS_Sederhana/categories');
+            exit;
+        } else {
+            $_SESSION['message'] = 'Failed to delete category.';
+            $_SESSION['message_type'] = 'danger';
+            header('Location: /CMS_Sederhana/categories'); // Redirect back to categories list
             exit;
         }
     }

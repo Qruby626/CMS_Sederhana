@@ -9,35 +9,35 @@ require_once __DIR__ . '/../app/controllers/AdminController.php';
 $router = new Router();
 
 // Auth routes
-$router->add('GET', '/CMS_Sederhana/auth/login', 'AuthController', 'login');
-$router->add('POST', '/CMS_Sederhana/auth/login', 'AuthController', 'login');
-$router->add('GET', '/CMS_Sederhana/auth/register', 'AuthController', 'register');
-$router->add('POST', '/CMS_Sederhana/auth/register', 'AuthController', 'register');
-$router->add('GET', '/CMS_Sederhana/auth/logout', 'AuthController', 'logout');
+$router->add('GET', '/auth/login', 'AuthController', 'login');
+$router->add('POST', '/auth/login', 'AuthController', 'login');
+$router->add('GET', '/auth/register', 'AuthController', 'register');
+$router->add('POST', '/auth/register', 'AuthController', 'register');
+$router->add('GET', '/auth/logout', 'AuthController', 'logout');
 
 // Dashboard route
-$router->add('GET', '/CMS_Sederhana/dashboard', 'DashboardController', 'index');
+$router->add('GET', '/dashboard', 'DashboardController', 'index');
 
 // Admin route
-$router->add('GET', '/CMS_Sederhana/admin', 'AdminController', 'index');
+$router->add('GET', '/admin', 'AdminController', 'index');
 
 // Category routes
-$router->add('GET', '/CMS_Sederhana/categories', 'CategoryController', 'index');
-$router->add('GET', '/CMS_Sederhana/categories/create', 'CategoryController', 'create');
-$router->add('POST', '/CMS_Sederhana/categories/create', 'CategoryController', 'create');
-$router->add('GET', '/CMS_Sederhana/categories/edit/{id}', 'CategoryController', 'edit');
-$router->add('POST', '/CMS_Sederhana/categories/edit/{id}', 'CategoryController', 'edit');
-$router->add('GET', '/CMS_Sederhana/categories/delete/{id}', 'CategoryController', 'delete');
+$router->add('GET', '/categories', 'CategoryController', 'index');
+$router->add('GET', '/categories/create', 'CategoryController', 'create');
+$router->add('POST', '/categories/create', 'CategoryController', 'create');
+$router->add('GET', '/categories/edit/{id}', 'CategoryController', 'edit');
+$router->add('POST', '/categories/edit/{id}', 'CategoryController', 'edit');
+$router->add('GET', '/categories/delete/{id}', 'CategoryController', 'delete');
 
 // Post routes
-$router->add('GET', '/CMS_Sederhana/posts', 'PostController', 'index');
-$router->add('GET', '/CMS_Sederhana/posts/create', 'PostController', 'create');
-$router->add('POST', '/CMS_Sederhana/posts/create', 'PostController', 'create');
-$router->add('GET', '/CMS_Sederhana/posts/edit/{id}', 'PostController', 'edit');
-$router->add('POST', '/CMS_Sederhana/posts/edit/{id}', 'PostController', 'edit');
-$router->add('GET', '/CMS_Sederhana/posts/delete/{id}', 'PostController', 'delete');
+$router->add('GET', '/posts', 'PostController', 'index');
+$router->add('GET', '/posts/create', 'PostController', 'create');
+$router->add('POST', '/posts/create', 'PostController', 'create');
+$router->add('GET', '/posts/edit/{id}', 'PostController', 'edit');
+$router->add('POST', '/posts/edit/{id}', 'PostController', 'edit');
+$router->add('GET', '/posts/delete/{id}', 'PostController', 'delete');
 
 // Home route
-$router->add('GET', '/CMS_Sederhana', 'PostController', 'index');
+$router->add('GET', '/', 'PostController', 'index');
 
 return $router; 

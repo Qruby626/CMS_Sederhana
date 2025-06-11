@@ -7,12 +7,12 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Create Post</h1>
-                <a href="/posts" class="btn btn-secondary">Back to Posts</a>
+                <a href="/CMS_Sederhana/posts" class="btn btn-secondary">Back to Posts</a>
             </div>
 
             <div class="row">
                 <div class="col-md-8">
-                    <form action="/posts/create" method="POST">
+                    <form action="/CMS_Sederhana/posts/create" method="POST">
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control" id="title" name="title" required>
@@ -30,7 +30,7 @@
 
                         <div class="mb-3">
                             <label for="content" class="form-label">Content</label>
-                            <textarea class="form-control" id="content" name="content" rows="10" required></textarea>
+                            <textarea class="form-control" id="content" name="content" rows="10"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Create Post</button>
@@ -48,6 +48,7 @@
         selector: '#content',
         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        relative_urls: false,
     });
 </script>
 

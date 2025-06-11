@@ -7,12 +7,12 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Edit Category</h1>
-                <a href="/categories" class="btn btn-secondary">Back to Categories</a>
+                <a href="/CMS_Sederhana/categories" class="btn btn-secondary">Back to Categories</a>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <form action="/categories/edit/<?= $category['id'] ?>" method="POST">
+                    <form action="/CMS_Sederhana/categories/edit/<?= $category['id'] ?>" method="POST">
                         <div class="mb-3">
                             <label for="name" class="form-label">Category Name</label>
                             <input type="text" class="form-control" id="name" name="name" 

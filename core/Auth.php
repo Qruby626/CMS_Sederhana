@@ -55,7 +55,7 @@ class Auth {
 
     public function requireLogin() {
         if (!$this->isLoggedIn()) {
-            header('Location: /login');
+            header('Location: /CMS_Sederhana/auth/login');
             exit;
         }
     }
